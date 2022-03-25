@@ -1,0 +1,10 @@
+curl --request POST \
+  'https://data.mongodb-api.com/app/data-krroj/endpoint/data/beta/action/findOne' \
+  --header 'Content-Type: application/json' \
+  --header 'Access-Control-Request-Headers: *' \
+  --header 'api-key: 6K1HITBgH8YYk96b9lfUYm5gwlC9yK1PfFFATbgX00jkOhmPlHNGxaS1ib1HNRQl' \
+  --data-raw '{
+      "dataSource": "MentalBuster",
+      "database": "MentalBuster",
+      "collection": "categories"
+  }'
