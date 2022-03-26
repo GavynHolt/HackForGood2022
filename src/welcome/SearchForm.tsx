@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { SyntheticEvent, useState } from "react";
-import Realm from '../realmWebConfig';
+import { SyntheticEvent, useEffect, useState } from "react";
+import realmDB, { loginApiKey } from '../realmWebConfig';
 
 function SearchForm() {
   const [age, setAge] = useState("0");
@@ -27,6 +27,14 @@ function SearchForm() {
     //   // console.log(data);
     // });
   }; 
+
+  useEffect(() => {
+    const user = loginApiKey();
+    const mongo = (realmDB as any).currentUser.mongoClient("MentalBuster");
+    const collection = mongo.db("MentalBuster").collection("categories"); 
+    const search = collection.findOne({ name: "Addiction" });
+    console.log(search);
+  });
 
   // ask age,
   // ask about disorders, diagnoses etc
