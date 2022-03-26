@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import FormIntro from "./FormIntro";
-import FormOne from "./FormOne";
+import FormTwo from "./FormTwo";
 
 function SwiperForm() {
   // ask age,
@@ -14,16 +14,21 @@ function SwiperForm() {
       slidesPerView={1}
       onSlideChange={() => console.log("slide change")}
       onSwiper={(swiper) => console.log(swiper)}
-      className="w-full"
+      preventInteractionOnTransition={true}
+      className="w-full mt-16"
+      noSwiping={true}
     >
-      <SwiperSlide>
+      <SwiperSlide className="swiper-no-swiping">
         <FormIntro />
       </SwiperSlide>
-      <SwiperSlide>
-        <FormOne />
+      <SwiperSlide className="swiper-no-swiping">
       </SwiperSlide>
-      <SwiperSlide>Slide 3</SwiperSlide>
-      <SwiperSlide>Slide 4</SwiperSlide>
+      <SwiperSlide className="swiper-no-swiping">
+        <FormTwo />
+      </SwiperSlide>
+      <SwiperSlide className="swiper-no-swiping">
+        Slide 4
+      </SwiperSlide>
     </Swiper>
   );
 }
