@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -12,6 +14,7 @@ module.exports = {
       }
     },
     colors: {
+      ...colors,
       'banner': '#ff385c',
       'white': '#FFFFFF',
       'navyblue': '#405fff'

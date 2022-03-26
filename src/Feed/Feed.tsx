@@ -15,8 +15,14 @@ export default function Feed() {
         logEvent(analytics, 'feed_view');
 
         const parseFeed = async () => {
+            let url = '';
+            if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+                url = 'https://thingproxy.freeboard.io/fetch/https://www.talkspace.com/blog/feed/';
+            } else {
+                url = 'https://www.talkspace.com/blog/feed/';
+            }
             let feedResults: any = [];
-            let feed = await axios.get('https://thingproxy.freeboard.io/fetch/https://www.talkspace.com/blog/feed/');
+            let feed = await axios.get(url);
             const data = feed?.data;
             const parser = new DOMParser();
             const xmlDoc = parser.parseFromString(data, "text/xml");
