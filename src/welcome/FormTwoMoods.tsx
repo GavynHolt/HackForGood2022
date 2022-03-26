@@ -11,7 +11,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-function FormTwoMoods() {
+interface FormTwoMoodsProps {
+  mood: string;
+  setMood: React.Dispatch<React.SetStateAction<string>>;
+}
+
+function FormTwoMoods({ mood, setMood }: FormTwoMoodsProps) {
   return (
     <>
       <h2 className="text-2xl font-bold text-center">I want to work on...</h2>
@@ -37,11 +42,18 @@ function FormTwoMoods() {
             height="320"
             width="320"
             alt="Mood: Sadness or Anxiety"
+            onClick={() => setMood("Sadness/Anxiety")}
           />
         </SwiperSlide>
         <SwiperSlide className="flex flex-col items-center">
           <h3 className="text-xl font-semibold mb-4">Feelings of Anger</h3>
-          <img src={moodAnger} height="320" width="320" alt="Mood: Anger" />
+          <img
+            src={moodAnger}
+            height="320"
+            width="320"
+            alt="Mood: Anger"
+            onClick={() => setMood("Anger")}
+          />
         </SwiperSlide>
         <SwiperSlide className="flex flex-col items-center">
           <h3 className="text-xl font-semibold mb-4">
@@ -52,6 +64,7 @@ function FormTwoMoods() {
             height="320"
             width="320"
             alt="Mood: Improve Personal Relationships"
+            onClick={() => setMood("Improve Personal Relationship")}
           />
         </SwiperSlide>
         <SwiperSlide className="flex flex-col items-center">
@@ -63,13 +76,16 @@ function FormTwoMoods() {
             height="320"
             width="320"
             alt="Mood: Addiction or Substance Abuse"
+            onClick={() => setMood("Addiction/Substance Abuse")}
           />
         </SwiperSlide>
       </Swiper>
+      <p className="font-semibold text-center">
+        Your selection: <span className="font-bold">{mood}</span>
+      </p>
       <SwiperNav />
     </>
   );
-  
 }
 
 export default FormTwoMoods;

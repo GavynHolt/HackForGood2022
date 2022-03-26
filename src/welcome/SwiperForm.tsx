@@ -5,11 +5,12 @@ import FormOneIntro from "./FormOneIntro";
 import FormTwoMoods from "./FormTwoMoods";
 import FormThreeServices from "./FormThreeServices";
 import FormFourExtraInfo from "./FormFourExtraInfo";
+import { useState } from "react";
 
 function SwiperForm() {
-  // ask age,
-  // ask about disorders, diagnoses etc
-  // get a feel of what they're looking for: multiple choice being the easiest? -> stretch: paragraph style input
+  const [mood, setMood] = useState<string>("");
+  const [services, setServices] = useState<string[]>([]);
+
   return (
     <Swiper
       spaceBetween={50}
@@ -24,10 +25,10 @@ function SwiperForm() {
         <FormOneIntro />
       </SwiperSlide>
       <SwiperSlide className="swiper-no-swiping">
-        <FormTwoMoods />
+        <FormTwoMoods mood={mood} setMood={setMood} />
       </SwiperSlide>
       <SwiperSlide className="swiper-no-swiping">
-        <FormThreeServices />
+        <FormThreeServices services={services} setServices={setServices} />
       </SwiperSlide>
       <SwiperSlide className="swiper-no-swiping">
         <FormFourExtraInfo />
