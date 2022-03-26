@@ -1,8 +1,9 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
-import FormIntro from "./FormIntro";
+import FormOneIntro from "./FormOneIntro";
 import FormTwo from "./FormTwo";
+import FormTwoMoods from "./FormTwoMoods";
 
 function SwiperForm() {
   // ask age,
@@ -19,16 +20,15 @@ function SwiperForm() {
       noSwiping={true}
     >
       <SwiperSlide className="swiper-no-swiping">
-        <FormIntro />
+        <FormOneIntro />
       </SwiperSlide>
       <SwiperSlide className="swiper-no-swiping">
-      </SwiperSlide>
+        <FormTwoMoods />
+        </SwiperSlide>
       <SwiperSlide className="swiper-no-swiping">
         <FormTwo />
       </SwiperSlide>
-      <SwiperSlide className="swiper-no-swiping">
-        Slide 4
-      </SwiperSlide>
+      <SwiperSlide className="swiper-no-swiping">Slide 4</SwiperSlide>
     </Swiper>
   );
 }
