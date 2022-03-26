@@ -1,32 +1,31 @@
 import { SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import realmDB from '../realmWebConfig';
+import realmDB from "../realmWebConfig";
 
-function SearchForm() {
+function FormOne() {
   const [age, setAge] = useState<string>("0");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e: SyntheticEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
-    const collection = mongo?.db("MentalBuster").collection("categories"); 
-    collection?.findOne({ topics: searchQuery }).then(res => {
-      setLoading(false);
-      console.log(res);
-      navigate("/results", { state: { category: res } });
+      e.preventDefault();
+      setLoading(true);
+      const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
+      const collection = mongo?.db("MentalBuster").collection("categories");
+      collection
+        ?.findOne({ topics: searchQuery })
+        .then((res) => {
+          setLoading(false);
+          console.log(res);
+          navigate("/results", { state: { category: res } });
+        })
+        .catch((err) => {
+          setLoading(false);
+          console.log(err.message);
+        });
+    };
 
-    }).catch((err) => {
-      setLoading(false);
-      console.log(err.message);
-    });
-  };
-
-  // ask age,
-  // ask about disorders, diagnoses etc
-  // get a feel of what they're looking for: multiple choice being the easiest? -> stretch: paragraph style input
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-xl">
       <div className="relative">
@@ -68,4 +67,4 @@ function SearchForm() {
   );
 }
 
-export default SearchForm;
+export default FormOne;
