@@ -5,11 +5,33 @@ import FormOneIntro from "./FormOneIntro";
 import FormTwoMoods from "./FormTwoMoods";
 import FormThreeServices from "./FormThreeServices";
 import FormFourExtraInfo from "./FormFourExtraInfo";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import realmDB from "../realmWebConfig";
+import { SyntheticEvent, useState } from "react";
 
 function SwiperForm() {
   const [mood, setMood] = useState<string>("");
   const [services, setServices] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
+    const collection = mongo?.db("MentalBuster").collection("categories");
+    collection
+      ?.findOne({ topics: 'Abuse' })
+      .then((res: any) => {
+        setLoading(false);
+        console.log(res);
+        navigate("/results", { state: { category: res } });
+      })
+      .catch((err: any) => {
+        setLoading(false);
+        console.log(err.message);
+      });
+  };
 
   return (
     <Swiper
@@ -31,7 +53,7 @@ function SwiperForm() {
         <FormThreeServices services={services} setServices={setServices} />
       </SwiperSlide>
       <SwiperSlide className="swiper-no-swiping">
-        <FormFourExtraInfo />
+        <FormFourExtraInfo loading={loading} handleSubmit={handleSubmit}/>
       </SwiperSlide>
     </Swiper>
   );

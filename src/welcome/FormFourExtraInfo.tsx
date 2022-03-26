@@ -1,32 +1,15 @@
 import { SyntheticEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import realmDB from "../realmWebConfig";
 import SwiperNav from "./SwiperNav";
 
-function FormFourExtraInfo() {
+interface FormFourExtraInfoProps {
+  loading: boolean;
+  handleSubmit: (e: SyntheticEvent) => void;
+}
+
+function FormFourExtraInfo({ loading, handleSubmit }: FormFourExtraInfoProps) {
   const [age, setAge] = useState<string>("0");
   const [location, setLocation] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const navigate = useNavigate();
-
-  const handleSubmit = (e: SyntheticEvent) => {
-      e.preventDefault();
-      setLoading(true);
-      const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
-      const collection = mongo?.db("MentalBuster").collection("categories");
-      collection
-        ?.findOne({ topics: searchQuery })
-        .then((res) => {
-          setLoading(false);
-          console.log(res);
-          navigate("/results", { state: { category: res } });
-        })
-        .catch((err) => {
-          setLoading(false);
-          console.log(err.message);
-        });
-    };
 
   return (
     <>
