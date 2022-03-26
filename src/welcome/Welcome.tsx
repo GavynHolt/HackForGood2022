@@ -10,11 +10,13 @@ function Welcome() {
 
   return (
     <div className="bg-welcome-background bg-cover flex-auto">
-      <main className="mx-auto w-11/12 max-w-5xl flex flex-col items-center pt-4 relative h-full">
+      <header className="mx-auto w-11/12 max-w-5xl flex flex-col items-center pt-4">
         <h1 className="text-3xl font-bold my-2">The Mental Map</h1>
         <p className="text-xl font-semibold">
           Connect to affordable mental health care
         </p>
+      </header>
+      <main className="mx-auto w-11/12 max-w-5xl flex flex-col justify-center items-center pt-4 relative h-full">
         <SwiperForm />
         {/* <button
           type="button"
