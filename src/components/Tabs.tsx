@@ -7,7 +7,7 @@ export default function Tabs() {
     
     return (
         <>
-            <div className="wrapper">
+            <div className="wrapper z-20">
                 <div className="navbar">
                     <div className={`navbar__item -blue ${path.includes('/home') ? 'active' : ''}`} onClick={() => navigate('/home')}>
                         <span className="navbar__icon">

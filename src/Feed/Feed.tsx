@@ -77,11 +77,11 @@ export default function Feed() {
 
     return (
         <div className="p8 bg-gray-300 h-full relative">
-            <div className="flex content-center my-6">
-                <LogoBanner orientation="row" />
-            </div>
+            <div className="relative mb-52 z-10">
+                <div className="flex content-center my-6">
+                    <LogoBanner orientation="row" />
+                </div>
 
-            <div className="relative mb-52">
                 <ContributeBanner />
 
                 <div>
