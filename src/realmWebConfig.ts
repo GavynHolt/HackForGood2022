@@ -1,5 +1,6 @@
 import * as Realm from "realm-web";
 const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     BSON: { ObjectId },
   } = Realm;
 
