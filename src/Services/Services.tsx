@@ -63,7 +63,7 @@ function Services() {
   return (
     <div className="w-full h-full calm-bg">
       <div className="flex content-center my-6">
-        <LogoBanner orientation="row" />
+        <LogoBanner orientation="row" color="" />
       </div>
 
       <h2 className="font-uber font-bold mx-8 text-2xl text-white tracking-wide">Services for</h2>

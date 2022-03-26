@@ -46,9 +46,9 @@ function FormFourExtraInfo({ age, setAge, location, setLocation, isPaidService, 
   return (
     <>
       <div className="mb-4">
-        <h2 className="text-2xl font-bold text-center">Anything else?</h2>
-        <h3 className="text-xl text-center">
-          Please enter any other optional information to narrow your search.
+        <h2 className="text-uber text-2xl font-semibold text-center">Anything else?</h2>
+        <h3 className="text-lg text-center text-uber">
+          Please enter any other option information to narrow your search.
         </h3>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
