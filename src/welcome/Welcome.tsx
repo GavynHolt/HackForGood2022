@@ -20,7 +20,7 @@ function Welcome() {
           Connect to affordable mental health care
         </p>
       </header>
-      <main className="mx-auto w-11/12 max-w-5xl flex flex-col justify-center items-center pt-4 relative h-full">
+      <main className="mx-auto w-11/12 max-w-5xl flex flex-col justify-center items-center pt-4 relative h-full mb-20">
         <SwiperForm />
         {/* <button
           type="button"

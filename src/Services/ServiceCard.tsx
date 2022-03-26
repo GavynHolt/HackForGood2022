@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import ImageGen from "../image-gen";
 
 export default function ServiceCard({ item }: any) {
-    const navigate = useNavigate();
-
     return (
         <div className="rounded overflow-hidden shadow-lg bg-white relative inline-block">
             <img className="w-full" src={ImageGen()} alt="Mountain" />

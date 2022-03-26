@@ -37,7 +37,7 @@ export default function Tabs() {
                             </svg>
                         </span>
                     </div>
-                    <div className={`navbar__item -purple ${path.includes('/results') ? 'active' : ''}`} onClick={() => navigate('/results')}>
+                    <div className={`navbar__item -purple ${path.includes('/results') ? 'active' : ''}`} onClick={() => window.location.href = "https://the--mental--map-netlify-app.translate.goog/home?_x_tr_sl=auto&_x_tr_tl=fr&_x_tr_hl=en&_x_tr_pto=wapp"}>
                         <span className="navbar__icon">
                             <svg className="icon">
                                 <use xlinkHref="#icon-user"></use>
