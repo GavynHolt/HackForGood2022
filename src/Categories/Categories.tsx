@@ -63,7 +63,7 @@ function Categories() {
   return (
     <div className="w-full h-full faded-bg">
       <div className="flex content-center my-6">
-        <LogoBanner orientation="row" color="" />
+        <LogoBanner orientation="row" color="text-blue-600" />
       </div>
 
       <h2 className="font-uber font-bold mx-8 text-3xl text-white tracking-wide">Categories</h2>
