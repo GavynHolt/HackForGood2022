@@ -27,7 +27,7 @@ function FormOne() {
     };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-xl">
+    <form onSubmit={handleSubmit} className="flex flex-col items-center">
       <div className="relative">
         <input
           type="text"
