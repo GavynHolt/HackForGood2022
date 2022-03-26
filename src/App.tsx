@@ -1,16 +1,19 @@
 import './App.css';
-import Welcome from './welcome/Welcome';
-import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { loginApiKey } from './realmWebConfig';
-import Results from './results/Results';
-import Tabs from './components/Tabs';
-import Categories from './Categories/Categories';
 import Parent from './components/Parent';
+import Splash from './components/Splash';
 
 function App() {
+  const [splash, setSplash] = useState(true);
+
   useEffect(() => {
     loginApiKey();
+
+    setTimeout(() => {
+      setSplash(false);
+    }, 700);
   }, []);
 
   return (
@@ -28,6 +31,7 @@ function App() {
           />
         </Routes>
       </Router>
+      <Splash visible={splash} />
     </>
   );
 }

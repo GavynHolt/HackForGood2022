@@ -6,6 +6,7 @@ import _ from 'lodash';
 import { useLocation } from "react-router-dom";
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../firebaseConfig";
+import Loader from "../components/Loading";
 
 function Services() {
   const [loading, setLoading] = useState(true);
@@ -25,7 +26,7 @@ function Services() {
 
   useEffect(() => {
     logEvent(analytics, 'categories_view');
-    
+
     const fetchServices = async () => {
       const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
       const collection = mongo?.db("MentalBuster").collection("services");
@@ -51,7 +52,9 @@ function Services() {
 
   if (loading) {
     return (
-      <div>loading</div>
+      <div className="h-full w-full flex items-center justify-center">
+        <Loader />
+      </div>
     );
   }
 
