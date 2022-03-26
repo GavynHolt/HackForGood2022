@@ -37,8 +37,8 @@ function FormTwoMoods({ mood, setMood }: FormTwoMoodsProps) {
           <h3 className="text-uber text-xl font-semibold mb-4">Sadness or Anxiety</h3>
           <img
             src={moodSadnessAnxiety}
-            height="250"
-            width="250"
+            height="150"
+            width="150"
             alt="Mood: Sadness or Anxiety"
             onClick={() => setMood("Sadness/Anxiety")}
           />
@@ -47,8 +47,8 @@ function FormTwoMoods({ mood, setMood }: FormTwoMoodsProps) {
           <h3 className="text-uber text-xl font-semibold mb-4">Feelings of Anger</h3>
           <img
             src={moodAnger}
-            height="250"
-            width="250"
+            height="150"
+            width="150"
             alt="Mood: Anger"
             onClick={() => setMood("Anger")}
           />
@@ -59,8 +59,8 @@ function FormTwoMoods({ mood, setMood }: FormTwoMoodsProps) {
           </h3>
           <img
             src={moodImproveRelationships}
-            height="250"
-            width="250"
+            height="150"
+            width="150"
             alt="Mood: Improve Personal Relationships"
             onClick={() => setMood("Improve Personal Relationship")}
           />
@@ -71,8 +71,8 @@ function FormTwoMoods({ mood, setMood }: FormTwoMoodsProps) {
           </h3>
           <img
             src={moodAddiction}
-            height="250"
-            width="250"
+            height="150"
+            width="150"
             alt="Mood: Addiction or Substance Abuse"
             onClick={() => setMood("Addiction/Substance Abuse")}
           />
