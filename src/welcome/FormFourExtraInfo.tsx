@@ -1,15 +1,18 @@
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent } from "react";
 import SwiperNav from "./SwiperNav";
 
 interface FormFourExtraInfoProps {
   loading: boolean;
   handleSubmit: (e: SyntheticEvent) => void;
+  age: string;
+  setAge: React.Dispatch<React.SetStateAction<string>>;
+  location: string;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+  searchQuery: string;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function FormFourExtraInfo({ loading, handleSubmit }: FormFourExtraInfoProps) {
-  const [age, setAge] = useState<string>("0");
-  const [location, setLocation] = useState<string>('');
-  const [searchQuery, setSearchQuery] = useState<string>("");
+function FormFourExtraInfo({ age, setAge, location, setLocation, searchQuery, setSearchQuery, loading, handleSubmit }: FormFourExtraInfoProps) {
 
   return (
     <>
@@ -27,7 +30,7 @@ function FormFourExtraInfo({ loading, handleSubmit }: FormFourExtraInfoProps) {
             name="age"
             className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 my-2 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
             placeholder="Age Range"
-            value={location}
+            value={age}
             onChange={(e: SyntheticEvent) =>
               setAge((e.target as HTMLSelectElement).value)
             }
@@ -46,13 +49,13 @@ function FormFourExtraInfo({ loading, handleSubmit }: FormFourExtraInfoProps) {
             name="location"
             className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 my-2 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
             placeholder="Location"
-            value={age}
+            value={location}
             onChange={(e: SyntheticEvent) =>
               setLocation((e.target as HTMLSelectElement).value)
             }
           >
             <option value="0">Any</option>
-            <option value="1">Toronto (GTA)</option>
+            <option value="Toronto">Toronto (GTA)</option>
           </select>
 
           <label htmlFor="search-query">Keywords</label>
