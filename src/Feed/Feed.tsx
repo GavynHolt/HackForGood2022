@@ -5,7 +5,8 @@ import { logEvent } from "firebase/analytics";
 import axios from "axios";
 import FeedCard from "../components/FeedCard";
 import LogoBanner from "../components/LogoBanner";
-import React from "react";
+
+import xml from './data';
 
 export default function Feed() {
     const [feed, setFeed] = useState([]);
@@ -14,18 +15,37 @@ export default function Feed() {
     useEffect(() => {
         logEvent(analytics, 'feed_view');
 
+        // const parseFeed = async () => {
+        //     let url = '';
+        //     if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
+        //         url = 'https://thingproxy.freeboard.io/fetch/https://www.talkspace.com/blog/feed/';
+        //     } else {
+        //         url = 'https://www.talkspace.com/blog/feed/';
+        //     }
+        //     let feedResults: any = [];
+        //     let feed = await axios.get(url);
+        //     const data = feed?.data;
+        //     const parser = new DOMParser();
+        //     const xmlDoc = parser.parseFromString(data, "text/xml");
+        //     const items = xmlDoc.getElementsByTagName("item");
+        //     for (let item of items as any) {
+        //         // ?.replace(/<\/?[^>]+(>|$)/g, "")
+        //         feedResults.push({
+        //             title: item.getElementsByTagName("title")[0].innerHTML,
+        //             link: item.getElementsByTagName("link")[0].innerHTML,
+        //             publishedAt: item.getElementsByTagName("pubDate")[0].innerHTML,
+        //             desc_short: item.getElementsByTagName("description")[0].innerHTML?.replace(/^<\!\[CDATA\[|\]\]>$/g, ''),
+        //             content: item.getElementsByTagName("content:encoded")[0].innerHTML?.replace(/^<\!\[CDATA\[|\]\]>$/g, ''),
+        //         });
+        //     }
+
+        //     return feedResults;
+        // }
+
         const parseFeed = async () => {
-            let url = '';
-            if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-                url = 'https://thingproxy.freeboard.io/fetch/https://www.talkspace.com/blog/feed/';
-            } else {
-                url = 'https://www.talkspace.com/blog/feed/';
-            }
             let feedResults: any = [];
-            let feed = await axios.get(url);
-            const data = feed?.data;
             const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(data, "text/xml");
+            const xmlDoc = parser.parseFromString(xml, "text/xml");
             const items = xmlDoc.getElementsByTagName("item");
             for (let item of items as any) {
                 // ?.replace(/<\/?[^>]+(>|$)/g, "")
