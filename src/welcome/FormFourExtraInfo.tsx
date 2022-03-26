@@ -48,7 +48,7 @@ function FormFourExtraInfo({ age, setAge, location, setLocation, isPaidService, 
       <div className="mb-4">
         <h2 className="text-uber text-2xl font-semibold text-center">Anything else?</h2>
         <h3 className="text-lg text-center text-uber">
-          Please enter any other option information to narrow your search.
+          Please enter any other optional information to narrow your search.
         </h3>
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col items-center">
@@ -91,7 +91,7 @@ function FormFourExtraInfo({ age, setAge, location, setLocation, isPaidService, 
             name="isPaidService"
             className="rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 my-2 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
             placeholder="Location"
-            value={location}
+            value={isPaidService}
             onChange={(e: SyntheticEvent) =>
               setIsPaidService((e.target as HTMLSelectElement).value)
             }
