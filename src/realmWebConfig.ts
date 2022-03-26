@@ -8,7 +8,9 @@ const app: Realm.App = new Realm.App({ id: REALM_APP_ID });
 
 export async function loginApiKey() {
     // Create an API Key credential
-    const credentials = Realm.Credentials.apiKey("NVaC2iIoqUaZiRFTfJrQCttT7BKkoHI8qlZQ40BKdkSvO5sP4DF3yPqn13uOOi7l");
+    const credentials = Realm.Credentials.apiKey(
+      "a8c0kmTVyKUvhktYLUV4QzkzfCrFAUqCIeBcoVIYeioQzTsyRm4W4yHRKLGouTtd"
+    );
     try {
       // Authenticate the user
       const user = await app.logIn(credentials);

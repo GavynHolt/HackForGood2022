@@ -1,40 +1,19 @@
-import axios, { AxiosRequestConfig } from "axios";
 import { SyntheticEvent, useEffect, useState } from "react";
-import realmDB, { loginApiKey } from '../realmWebConfig';
+import realmDB from '../realmWebConfig';
 
 function SearchForm() {
   const [age, setAge] = useState("0");
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    
-    // const url = "https://data.mongodb-api.com/app/data-krroj/endpoint/data/beta/action/findOne";
-    // const data = {
-    //   dataSource: "MentalBuster",
-    //   database: "MentalBuster",
-    //   collection: "categories",
-    // };
-    // const config = {
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Access-Control-Request-Headers': '*',
-    //     'api-key': '6K1HITBgH8YYk96b9lfUYm5gwlC9yK1PfFFATbgX00jkOhmPlHNGxaS1ib1HNRQl'
-    //   }
-    // } as AxiosRequestConfig;
-
-
-    // axios.post(url, data, config).then((data) => {
-    //   // console.log(data);
-    // });
+    const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
+    const collection = mongo?.db("MentalBuster").collection("categories"); 
+    const search = collection?.findOne({ topics: searchQuery });
+    search?.then(res => {
+      console.log(res);
+    })
   }; 
-
-  useEffect(() => {
-    const user = loginApiKey();
-    const mongo = (realmDB as any).currentUser.mongoClient("MentalBuster");
-    const collection = mongo.db("MentalBuster").collection("categories"); 
-    const search = collection.findOne({ name: "Addiction" });
-    console.log(search);
-  });
 
   // ask age,
   // ask about disorders, diagnoses etc
@@ -47,6 +26,8 @@ function SearchForm() {
           id="rounded-email"
           className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 my-2 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
           placeholder="Keyword Search..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery((e.target as HTMLInputElement).value)}
         />
 
         <select
