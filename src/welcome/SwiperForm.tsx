@@ -15,22 +15,16 @@ function SwiperForm() {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e: SyntheticEvent) => {
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
-    setLoading(true);
     const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
     const collection = mongo?.db("MentalBuster").collection("categories");
-    collection
-      ?.findOne({ topics: 'Abuse' })
-      .then((res: any) => {
-        setLoading(false);
-        console.log(res);
-        navigate("/results", { state: { category: res } });
-      })
-      .catch((err: any) => {
-        setLoading(false);
-        console.log(err.message);
-      });
+    const topics = mood.toLowerCase().split(',').join(',').split('/');
+    const results = await collection?.find({ topics: { $in: topics } });
+    if (!!results && results.length > 0) {
+      const slug = results[0]?.slug;
+      console.warn('----slug', slug);
+    }
   };
 
   return (
