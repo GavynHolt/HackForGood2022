@@ -28,9 +28,7 @@ function SwiperForm() {
     const results = await collection?.find({ topics: { $in: topics } });
     if (!!results && results.length > 0) {
       const slug = results[0]?.slug;
-      console.warn('----slug', slug);
       setLoading(false);
-      console.log(services, slug, age, location);
       navigate('/results', { state: {
         services,
         slug,
