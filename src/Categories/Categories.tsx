@@ -36,6 +36,7 @@ function Categories() {
       const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
       const collection = mongo?.db("MentalBuster").collection("categories");
       const results = await collection?.find();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const count: number = results?.length || 0;
 
       if (!localResults) {
