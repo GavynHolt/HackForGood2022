@@ -40,8 +40,6 @@ function FormThreeServices({services, setServices}: FormThreeMoodsProps) {
           }}
           spaceBetween={50}
           slidesPerView={1}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
           preventInteractionOnTransition={true}
           className="w-full mt-16"
           noSwiping={false}
@@ -99,10 +97,9 @@ function FormThreeServices({services, setServices}: FormThreeMoodsProps) {
         </Swiper>
         <p className="font-semibold">Your selection:</p>
         <ul>
-          {services.map((service) => (
-            <li className="font-bold">{service}</li>
-          ))}
-          { !services.length && (
+          {services.length ? services.map((service, index) => (
+            <li key={index} className="font-bold">{service}</li>
+          )) : (
             <li>None</li>
           )}
         </ul>

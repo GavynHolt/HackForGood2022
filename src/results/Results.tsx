@@ -21,27 +21,27 @@ interface ServiceResults {
  
 function Results() {
   const location = useLocation();
-  const { category }: any = location.state;
+  const { mood, services, slug }: any = location.state;
   const [loading, setLoading] = useState<boolean>(true);
   const [results, setResults] = useState<ServiceResults[]>([]);
 
-  console.log(category.id);
+  console.log('state', location?.state);
 
   useEffect(() => {
-    if (category?.id) {
+    if (slug) {
       setLoading(true);
       const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
       const collection = mongo?.db("MentalBuster").collection("services"); 
-      collection?.find({ category: category.id }).then((res: ServiceResults[]) => {
-        console.log(res);
+      collection?.find({ category_slug: slug }).then((res: ServiceResults[]) => {
+        console.log('results', res);
         setResults(res || []);
         setLoading(false);
-      }).catch((err) => {
+      }).catch((err: any) => {
         // error message here.
         setLoading(false);
       });
     }
-  }, [category.id]);
+  }, [slug]);
 
   return (
     <div className="bg-welcome-background bg-cover min-h-screen">
@@ -52,7 +52,7 @@ function Results() {
         </p>
 
         <div className="mt-4">
-          <h2 className="text-2xl font-semibold">{category.name}</h2>
+          <h2 className="text-2xl font-semibold">{slug}</h2>
         </div>
 
         <div className="flex flex-wrap">
@@ -69,16 +69,16 @@ function Results() {
             results.map((result: ServiceResults) => (
               <div
                 className="bg-white max-w-80 flex-auto rounded-2xl shadow-lg m-4"
-                key={result._id}
+                key={result?._id}
               >
                 <div className="p-3">
                   <div className="mt-2">
                     <h2 className="h-8 rounded text-xl font-semibold">
-                      {result.title}
+                      {result?.title}
                     </h2>
-                    <p>{result.lang}</p>
-                    <p>{result.phone}</p>
-                    <p><a href={result.website}>{result.website}</a></p>
+                    <p>{result?.lang}</p>
+                    <p>{result?.phone}</p>
+                    <p><a href={result?.website} target="_blank" rel="noreferrer">{result?.website}</a></p>
                   </div>
                 </div>
               </div>

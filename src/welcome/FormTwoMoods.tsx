@@ -29,8 +29,6 @@ function FormTwoMoods({ mood, setMood }: FormTwoMoodsProps) {
         }}
         spaceBetween={50}
         slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         preventInteractionOnTransition={true}
         className="w-full mt-16"
         noSwiping={false}

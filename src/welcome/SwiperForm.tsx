@@ -12,11 +12,15 @@ import { SyntheticEvent, useState } from "react";
 function SwiperForm() {
   const [mood, setMood] = useState<string>("");
   const [services, setServices] = useState<string[]>([]);
+  const [age, setAge] = useState<string>("0");
+  const [location, setLocation] = useState<string>("");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
+    setLoading(true);
     const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
     const collection = mongo?.db("MentalBuster").collection("categories");
     const topics = mood.toLowerCase().split(',').join(',').split('/');
@@ -24,6 +28,13 @@ function SwiperForm() {
     if (!!results && results.length > 0) {
       const slug = results[0]?.slug;
       console.warn('----slug', slug);
+      setLoading(false);
+      console.log(services, slug, age, location);
+      navigate('/results', { state: {
+        mood,
+        services,
+        slug,
+      }})
     }
   };
 
@@ -31,8 +42,6 @@ function SwiperForm() {
     <Swiper
       spaceBetween={50}
       slidesPerView={1}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
       preventInteractionOnTransition={true}
       className="w-full my-4 swiper-no-swiping"
       noSwiping={true}
@@ -47,7 +56,16 @@ function SwiperForm() {
         <FormThreeServices services={services} setServices={setServices} />
       </SwiperSlide>
       <SwiperSlide className="swiper-no-swiping">
-        <FormFourExtraInfo loading={loading} handleSubmit={handleSubmit}/>
+        <FormFourExtraInfo 
+          loading={loading} 
+          handleSubmit={handleSubmit} 
+          age={age} 
+          setAge={setAge} 
+          location={location} 
+          setLocation={setLocation}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
       </SwiperSlide>
     </Swiper>
   );
