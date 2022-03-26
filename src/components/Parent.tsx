@@ -13,7 +13,7 @@ export default function Parent() {
 
     return (
         <>
-            <div className="content">
+            <div className="flex flex-col justify-between min-h-screen">
                 {path === "/home" && <Feed />}
                 {path === "/discover" && <Welcome />}
                 {path === "/service/:slug" && <Welcome />}
