@@ -13,11 +13,11 @@ module.exports = {
         'uber': ['Uber Move Text', 'sans-serif'],
       }
     },
-    colors: {
-      'banner': '#ff385c',
-      'white': '#FFFFFF',
-      'blue': '#405fff',
-    }
+    // colors: {
+    //   'banner': '#ff385c',
+    //   'white': '#FFFFFF',
+    //   'blue': '#405fff',
+    // }
   },
   plugins: [],
 }
