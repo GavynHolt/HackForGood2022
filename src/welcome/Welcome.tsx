@@ -1,6 +1,13 @@
+import { logEvent } from "firebase/analytics";
+import { useEffect } from "react";
+import { analytics } from "../firebaseConfig";
 import SearchForm from "./SearchForm";
 
 function Welcome() { 
+  useEffect(() => {
+    logEvent(analytics, 'welcome_view');
+  });
+
   return (
     <div className="bg-welcome-background bg-cover min-h-screen">
       <main className="mx-auto w-11/12 max-w-5xl flex flex-col items-center pt-4 relative min-h-screen">

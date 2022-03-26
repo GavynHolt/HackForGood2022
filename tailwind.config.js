@@ -8,6 +8,10 @@ module.exports = {
         'welcome-background': "url('/src/assets/welcome-background.jpeg')",
       }
     },
+    colors: {
+      'banner': '#ff385c',
+      'white': '#FFFFFF'
+    }
   },
   plugins: [],
 }
