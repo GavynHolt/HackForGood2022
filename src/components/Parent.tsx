@@ -15,6 +15,7 @@ export default function Parent() {
             <div className="content">
                 {path === "/home" && <Feed />}
                 {path === "/discover" && <Welcome />}
+                {path === "/service/:slug" && <Welcome />}
                 {!slug && path === "/categories" && <Categories />}
                 {!!slug && path.includes('/categories') && <Services />}
             </div>
