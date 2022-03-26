@@ -32,7 +32,7 @@ function Results() {
       setLoading(true);
       const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
       const collection = mongo?.db("MentalBuster").collection("services"); 
-      collection?.find().then((res: ServiceResults[]) => {
+      collection?.find({ category: category.id }).then((res: ServiceResults[]) => {
         console.log(res);
         setResults(res || []);
         setLoading(false);
@@ -78,7 +78,7 @@ function Results() {
                     </h2>
                     <p>{result.lang}</p>
                     <p>{result.phone}</p>
-                    <p><a href="result.website">{result.website}</a></p>
+                    <p><a href={result.website}>{result.website}</a></p>
                   </div>
                 </div>
               </div>
