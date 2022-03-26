@@ -48,7 +48,7 @@ function Services() {
     }
 
     fetchServices();
-  }, [loading]);
+  }, [loading, slug]);
 
   if (loading) {
     return (
