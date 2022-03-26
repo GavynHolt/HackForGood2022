@@ -43,10 +43,16 @@ function Results() {
       findQuery.fees = isPaidService === "true"
     }
     if (searchQuery || services) {
-      const combinedQuery =
-        searchQuery + ',' + services.join(',').toLowerCase().split(",").join(",").split("/").split(',');
-      console.log('combined: ', combinedQuery);
-      findQuery.topics = { $in: combinedQuery.trim().toLowerCase().split(' ')}
+      const search_query = searchQuery.toLowerCase().split(' ');
+      let services_query = services.join(',').toLowerCase().trim();
+      if (services_query.includes('/')) {
+        services_query = services_query.split('/');
+      }
+      if (services_query.includes(',')) {
+        services_query = services_query.split(',');
+      }
+      const combined_query = [...search_query, ...services_query];
+      findQuery.topics = { $in: combined_query};
     }
 
     console.log(findQuery);
