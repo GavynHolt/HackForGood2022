@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import realmDB from "../realmWebConfig";
+import ServiceCard from '../Services/ServiceCard';
 import LoadingCard from './LoadingCard';
 
 interface ServiceResults {
@@ -21,27 +22,50 @@ interface ServiceResults {
  
 function Results() {
   const location = useLocation();
-  const { mood, services, slug }: any = location.state;
+  const { services, slug, age, location: serviceLocation, isPaidService, searchQuery }: any = location.state;
   const [loading, setLoading] = useState<boolean>(true);
   const [results, setResults] = useState<ServiceResults[]>([]);
 
   console.log('state', location?.state);
 
   useEffect(() => {
+    const findQuery: any = {};
     if (slug) {
+      findQuery.category_slug = slug
+    }
+    if (serviceLocation) {
+      findQuery.area_topics = { $in: [serviceLocation.toLowerCase()] };
+    }
+    if (age !== "All ages") {
+      findQuery.ages = { $in: [age] };
+    }
+    if (isPaidService !== "any") {
+      findQuery.fees = isPaidService === "true"
+    }
+    if (searchQuery || services) {
+      const combinedQuery =
+        searchQuery + ',' + services.join(',').toLowerCase().split(",").join(",").split("/").split(',');
+      console.log('combined: ', combinedQuery);
+      findQuery.topics = { $in: combinedQuery.trim().toLowerCase().split(' ')}
+    }
+
+    console.log(findQuery);
+
+    if (findQuery.category_slug) {
       setLoading(true);
       const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
       const collection = mongo?.db("MentalBuster").collection("services"); 
-      collection?.find({ category_slug: slug }).then((res: ServiceResults[]) => {
-        console.log('results', res);
+      collection?.find(findQuery).then((res: ServiceResults[]) => {
+        console.log("results", res);
         setResults(res || []);
         setLoading(false);
-      }).catch((err: any) => {
+      })
+      .catch((err: any) => {
         // error message here.
         setLoading(false);
       });
     }
-  }, [slug]);
+  }, [age, serviceLocation, slug]);
 
   return (
     <div className="bg-welcome-background bg-cover min-h-screen">
@@ -55,35 +79,11 @@ function Results() {
           <h2 className="text-2xl font-semibold">{slug}</h2>
         </div>
 
-        <div className="flex flex-wrap">
-          {loading ? (
-            <>
-              <LoadingCard />
-              <LoadingCard />
-              <LoadingCard />
-              <LoadingCard />
-              <LoadingCard />
-              <LoadingCard />
-            </>
-          ) : (
-            results.map((result: ServiceResults) => (
-              <div
-                className="bg-white max-w-80 flex-auto rounded-2xl shadow-lg m-4"
-                key={result?._id}
-              >
-                <div className="p-3">
-                  <div className="mt-2">
-                    <h2 className="h-8 rounded text-xl font-semibold">
-                      {result?.title}
-                    </h2>
-                    <p>{result?.lang}</p>
-                    <p>{result?.phone}</p>
-                    <p><a href={result?.website} target="_blank" rel="noreferrer">{result?.website}</a></p>
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
+        <div className="p-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5 mb-40">
+          { loading ? 
+            [1,2,3,4,5,6].map((val) => <LoadingCard key={val} /> ) 
+            : results.map((result: ServiceResults, index) => <ServiceCard key={index} item={result} /> )
+          }
         </div>
       </main>
     </div>

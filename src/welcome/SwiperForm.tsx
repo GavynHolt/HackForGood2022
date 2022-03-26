@@ -12,8 +12,9 @@ import { SyntheticEvent, useState } from "react";
 function SwiperForm() {
   const [mood, setMood] = useState<string>("");
   const [services, setServices] = useState<string[]>([]);
-  const [age, setAge] = useState<string>("0");
+  const [age, setAge] = useState<string>("All ages");
   const [location, setLocation] = useState<string>("");
+  const [isPaidService, setIsPaidService] = useState<string>("any");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -31,9 +32,12 @@ function SwiperForm() {
       setLoading(false);
       console.log(services, slug, age, location);
       navigate('/results', { state: {
-        mood,
         services,
         slug,
+        age,
+        location,
+        isPaidService,
+        searchQuery,
       }})
     }
   };
@@ -56,13 +60,15 @@ function SwiperForm() {
         <FormThreeServices services={services} setServices={setServices} />
       </SwiperSlide>
       <SwiperSlide className="swiper-no-swiping">
-        <FormFourExtraInfo 
-          loading={loading} 
-          handleSubmit={handleSubmit} 
-          age={age} 
-          setAge={setAge} 
-          location={location} 
+        <FormFourExtraInfo
+          loading={loading}
+          handleSubmit={handleSubmit}
+          age={age}
+          setAge={setAge}
+          location={location}
           setLocation={setLocation}
+          isPaidService={isPaidService}
+          setIsPaidService={setIsPaidService}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
         />
