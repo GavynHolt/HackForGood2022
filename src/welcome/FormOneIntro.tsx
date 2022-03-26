@@ -4,7 +4,7 @@ function FormOneIntro() {
   const swiper = useSwiper();
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col justify-center items-center">
       <h2>Answer a few questions to get connected to the right care.</h2>
       <button
         type="button"

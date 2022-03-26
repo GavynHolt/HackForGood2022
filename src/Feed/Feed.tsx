@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 import ContributeBanner from "./ContributeBanner";
 import { analytics } from '../firebaseConfig';
@@ -53,8 +54,8 @@ export default function Feed() {
                     title: item.getElementsByTagName("title")[0].innerHTML,
                     link: item.getElementsByTagName("link")[0].innerHTML,
                     publishedAt: item.getElementsByTagName("pubDate")[0].innerHTML,
-                    desc_short: item.getElementsByTagName("description")[0].innerHTML?.replace(/^<\!\[CDATA\[|\]\]>$/g, ''),
-                    content: item.getElementsByTagName("content:encoded")[0].innerHTML?.replace(/^<\!\[CDATA\[|\]\]>$/g, ''),
+                    desc_short: item.getElementsByTagName("description")[0].innerHTML?.replace(/^<!\[CDATA\[|\]\]>$/g, ''),
+                    content: item.getElementsByTagName("content:encoded")[0].innerHTML?.replace(/^<!\[CDATA\[|\]\]>$/g, ''),
                 });
             }
 
