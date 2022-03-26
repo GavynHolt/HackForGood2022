@@ -3,7 +3,7 @@ import moment from "moment";
 export default function FeedCard({ item }: any) {
     const publishedAt = moment(item?.publishedAt);
     return (
-        <div className="flex bg-white shadow-lg rounded-lg mx-4 md:mx-auto my-8 max-w-md md:max-w-2xl ">
+        <div className="flex bg-white shadow-lg rounded-lg mx-4 md:mx-auto my-8 max-w-md md:max-w-2xl lg:w-full">
             <div className="flex items-start px-4 py-6">
                 <img className="w-12 h-12 rounded-full object-cover mr-4 shadow" src="/mm-512.png" alt="avatar" />
                     <div className="">

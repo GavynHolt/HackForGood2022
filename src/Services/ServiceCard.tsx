@@ -4,15 +4,48 @@ export default function ServiceCard({ item }: any) {
     const navigate = useNavigate();
 
     return (
-        <div className="rounded overflow-hidden shadow-lg bg-white">
+        <div className="rounded overflow-hidden shadow-lg bg-white relative inline-block">
             <img className="w-full" src="https://images.unsplash.com/photo-1579600161224-cac5a2971069?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80" alt="Mountain" />
             <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2 font-uber" onClick={() => navigate(`/service/${item.slug}`, { state: { slug: item.slug } })}>{item?.title}</div>
-                <p className="text-gray-700 text-base font-uber">{item?.summary?.slice(0, 200).concat('…')}</p>
+                <a className="font-bold text-xl mb-2 font-uber" href={`https://${item?.website}`} rel="noreferrer" target="_blank">{item?.title}</a>
+                <p className="text-gray-700 text-base font-uber mt-2">{item?.summary?.slice(0, 200).concat('…')}</p>
             </div>
             <div className="px-6 pt-4 pb-2">
-                {/* {item?.topics?.map((topic: any) => topic !== 'and' && (<span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2" key={`${topic}-${(Math.random() + 1).toString(36).substring(7)}`}>#{topic}</span>))} */}
+                <div className="flex justify-start items-center m-1 px-4 py-1.5 rounded-full bg-orange-700 text-base text-white font-medium">
+                    <i className="fa fa-globe mr-1"></i>
+                    <a href={`https://${item?.website}`} rel="noreferrer" target="_blank" className="flex-initial leading-none text-xs font-normal">{item?.website}</a>
+                </div>
+                {item?.area && (
+                    <div className="flex justify-start items-center m-1 px-4 py-1.5 rounded-full bg-orange-700 text-base text-white font-medium">
+                        <i className="fa fa-location-arrow mr-1"></i>
+                        <div className="flex-initial leading-none text-xs font-normal">{item?.area}</div>
+                    </div>
+                )}
+                {item?.lang && (
+                    <div className="flex justify-start items-center m-1 px-4 py-1.5 rounded-full bg-orange-700 text-base text-white font-medium">
+                        <i className="fa fa-location-arrow mr-1"></i>
+                        <div className="flex-initial leading-none text-xs font-normal">{item?.lang}</div>
+                    </div>
+                )}
+                {item?.phone && (
+                    <div className="flex justify-start items-center m-1 px-4 py-1.5 rounded-full bg-orange-700 text-base text-white font-medium">
+                        <i className="fa fa-phone mr-1"></i>
+                        {item?.phone?.length === 1 && <div className="flex-initial leading-none text-xs font-normal"><a href={`tel:` + item?.phone[0]}>{item?.phone[0]}</a></div>}
+                        {item?.phone?.length === 2 && <div className="flex-initial leading-none text-xs font-normal"><a href={`tel:` + item?.phone[0]}>{item?.phone[0]}</a>, <a href={item?.phone[1]}>{item?.phone[1]}</a></div>}
+                    </div>
+                )}
             </div>
+            {item?.fees ? (
+                <span className="drop-shadow-md absolute top-2 right-2 inline-flex items-center justify-center px-4 py-1.5 text-xs font-bold leading-none text-red-100 transform bg-orange-600 rounded-full">
+                    <i className="fa fa-credit-card"></i>
+                    <span className="ml-2">Paid</span>
+                </span>
+            ) : (
+                <span className="drop-shadow-md absolute top-2 right-2 inline-flex items-center justify-center px-4 py-1.5 text-xs font-bold leading-none text-red-100 transform bg-green-600 rounded-full">
+                    <i className="fa fa-credit-card"></i>
+                    <span className="ml-2">Free Service</span>
+                </span>
+            )}
         </div>
     );
 }

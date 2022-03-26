@@ -19,7 +19,7 @@ export default function SearchInput({ onChange }: any) {
     }, [debouncedSearch]);
 
     return (
-        <div className="flex flex-row font-uber text-lg rounded-3xl border-transparent flex-1 appearance-none border border-blue w-full py-2 px-4 my-2 bg-white text-blue placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
+        <div className="flex flex-row font-uber text-lg rounded-3xl border-transparent flex-1 appearance-none border border-blue-500 w-full py-2 px-4 my-2 bg-white text-blue-500 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent">
             <input
                 type="text"
                 id="search-query"
