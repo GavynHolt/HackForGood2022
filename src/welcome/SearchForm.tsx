@@ -1,4 +1,4 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import { SyntheticEvent, useState } from "react";
 import realmDB from '../realmWebConfig';
 
 function SearchForm() {
@@ -13,7 +13,7 @@ function SearchForm() {
     search?.then(res => {
       console.log(res);
     })
-  }; 
+  };
 
   // ask age,
   // ask about disorders, diagnoses etc
