@@ -69,6 +69,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.180",
-    "@types/react-addons-create-fragment": "^0.14.19"
+    "@types/react-addons-create-fragment": "^0.14.19",
+    "file-loader": "^6.2.0"
   }
 }

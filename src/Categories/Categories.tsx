@@ -5,9 +5,11 @@ import CategoryCard from "./CategoryCard";
 import _ from 'lodash';
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../firebaseConfig";
+import LogoBanner from "../components/LogoBanner";
 
 function Categories() {
   const [loading, setLoading] = useState(true);
+  const [words, setWords] = useState('');
   const [categories, setCategories] = useState([]);
 
   const flowFilter = (array: any, substr: any) => {
@@ -60,10 +62,21 @@ function Categories() {
 
   return (
     <div className="w-full h-full faded-bg">
+      <div className="flex content-center my-6">
+        <LogoBanner orientation="row" />
+      </div>
+
+      <h2 className="font-uber font-bold mx-8 text-3xl text-white tracking-wide">Categories</h2>
       <div className="ml-8 mr-8 pt-8">
         <SearchInput onChange={(keywords: string) => {
+          setWords(keywords);
           setCategories(flowFilter(categories, keywords) as any);
         }} />
+        {!!words ? (
+          <h3 className="mx-2 text-xs mt-2 font-uber italic">Showing {categories?.length} results for {words}</h3>
+        ) : (
+          <h3 className="mx-2 text-xs mt-2 font-uber italic">Showing {categories?.length} results</h3>
+        )}
       </div>
       <div className="p-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
         {categories.map((category: any) => <CategoryCard item={category} key={category._id} />)}
