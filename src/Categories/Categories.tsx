@@ -6,6 +6,7 @@ import _ from 'lodash';
 import { logEvent } from "firebase/analytics";
 import { analytics } from "../firebaseConfig";
 import LogoBanner from "../components/LogoBanner";
+import Loader from "../components/Loading";
 
 function Categories() {
   const [loading, setLoading] = useState(true);
@@ -56,7 +57,9 @@ function Categories() {
 
   if (loading) {
     return (
-      <div>loading</div>
+      <div className="h-full w-full flex items-center justify-center">
+        <Loader />
+      </div>
     );
   }
 
