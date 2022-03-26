@@ -26,8 +26,6 @@ function Results() {
   const [loading, setLoading] = useState<boolean>(true);
   const [results, setResults] = useState<ServiceResults[]>([]);
 
-  console.log('state', location?.state);
-
   useEffect(() => {
     const findQuery: any = {};
     if (slug) {
@@ -55,14 +53,11 @@ function Results() {
       findQuery.topics = { $in: combined_query};
     }
 
-    console.log(findQuery);
-
     if (findQuery.category_slug) {
       setLoading(true);
       const mongo = realmDB.currentUser?.mongoClient("mongodb-atlas");
       const collection = mongo?.db("MentalBuster").collection("services"); 
       collection?.find(findQuery).then((res: ServiceResults[]) => {
-        console.log("results", res);
         setResults(res || []);
         setLoading(false);
       })
@@ -71,7 +66,7 @@ function Results() {
         setLoading(false);
       });
     }
-  }, [age, serviceLocation, slug]);
+  }, [age, isPaidService, searchQuery, serviceLocation, services, slug]);
 
   return (
     <div className="bg-welcome-background bg-cover min-h-screen">
