@@ -6,6 +6,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         'welcome-background': "url('/src/assets/welcome-background.jpeg')",
+      },
+      fontFamily: {
+        'uber': ['Uber Move Text', 'sans-serif'],
       }
     },
     colors: {

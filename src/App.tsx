@@ -1,6 +1,6 @@
 import './App.css';
 import Welcome from './welcome/Welcome';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { loginApiKey } from './realmWebConfig';
 import Results from './results/Results';
@@ -22,6 +22,10 @@ function App() {
           {/* <Route path="/" element={<Welcome />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/results" element={<Results />} /> */}
+          <Route
+            path="*"
+            element={<Navigate to="/home" />}
+          />
         </Routes>
       </Router>
     </>
