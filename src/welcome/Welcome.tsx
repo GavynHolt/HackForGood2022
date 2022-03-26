@@ -1,5 +1,6 @@
 import { logEvent } from "firebase/analytics";
 import { useEffect } from "react";
+import LogoBanner from "../components/LogoBanner";
 import { analytics } from "../firebaseConfig";
 import SwiperForm from "./SwiperForm";
 
@@ -10,9 +11,12 @@ function Welcome() {
 
   return (
     <div className="bg-welcome-background bg-cover flex-auto">
+      <div className="flex content-center my-6">
+        <LogoBanner orientation="row" color="text-blue-500" />
+      </div>
+      
       <header className="mx-auto w-11/12 max-w-5xl flex flex-col items-center pt-4">
-        <h1 className="text-3xl font-bold my-2">The Mental Map</h1>
-        <p className="text-xl font-semibold">
+        <p className="text-2xl font-bold text-uber">
           Connect to affordable mental health care
         </p>
       </header>

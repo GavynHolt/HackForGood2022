@@ -17,8 +17,8 @@ function FormFourExtraInfo({ age, setAge, location, setLocation, searchQuery, se
   return (
     <>
       <div className="mb-4">
-        <h2 className="text-2xl font-bold text-center">Anything else?</h2>
-        <h3 className="text-xl text-center">
+        <h2 className="text-uber text-2xl font-semibold text-center">Anything else?</h2>
+        <h3 className="text-lg text-center text-uber">
           Please enter any other option information to narrow your search.
         </h3>
       </div>
