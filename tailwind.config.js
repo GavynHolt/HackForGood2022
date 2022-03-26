@@ -13,7 +13,8 @@ module.exports = {
     },
     colors: {
       'banner': '#ff385c',
-      'white': '#FFFFFF'
+      'white': '#FFFFFF',
+      'navyblue': '#405fff'
     }
   },
   plugins: [],
