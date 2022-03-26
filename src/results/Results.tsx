@@ -77,7 +77,7 @@ function Results() {
         </p>
 
         <div className="mt-4">
-          <h2 className="text-2xl font-semibold">{slug}</h2>
+          <h2 className="text-2xl font-semibold capitalize">{slug}</h2>
         </div>
 
         <div className="p-8 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5 mb-40">
