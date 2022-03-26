@@ -51,7 +51,7 @@ function FormFourExtraInfo({ age, setAge, location, setLocation, isPaidService, 
           Please enter any other optional information to narrow your search.
         </h3>
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-col items-center">
+      <form onSubmit={handleSubmit} className="flex flex-col items-center mb-40">
         <div className="relative">
           <label htmlFor="age">Age range</label>
           <select
